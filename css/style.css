@@ -1,0 +1,75 @@
+body{
+  background-color: #111;
+  font-family: 'Lato', sans-serif;
+  color: #777;
+  text-align: center;
+}
+.minutes{
+  cursor: pointer;
+}
+main{
+  margin: 0 auto;
+  width: 960px;
+}
+h1, h2{
+  color: #D31996;
+  display: inline;
+  font-size: 3em;
+  font-family: 'David Libre', serif;
+}
+h1{
+  color: #708D91
+}
+.container{
+  margin: 4em auto;
+  display: flex;
+  justify-content: center;
+}
+.clock{
+  background-color: #708D91;
+  border-radius: 15%;
+  height: 300px;
+  width: 320px;
+  padding-top: 20px;
+  float: left;
+  color: #ccc;
+  font-size: 2em;
+}
+.highlighted{
+  background-color: #D31996;
+}
+input{
+  background-color: #333;
+  border: none;
+  padding: 10px;
+  border-radius: 5%;
+  color: #ccc;
+  display: block;
+  clear: both;
+  cursor: pointer;
+  width: 25%;
+  margin: 15px auto 0;
+}
+input[type=button]:hover{
+  background-color: #D31996;
+}
+input.customize{
+  position: relative;
+  top: -8em;
+}
+@media screen and (max-width: 959px){
+  main{
+    width: 360px;
+  }
+  h1,h2{
+    line-height: 1em;
+  }
+  .container{
+    display: block;
+  }
+  .clock{
+    width: 95%;
+    margin: 10px;
+    float: none;
+  }
+}
