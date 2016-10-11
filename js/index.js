@@ -57,40 +57,44 @@ $(document).ready(function(){
     }
   };
   
-  $('.go').click(function(){
-   
-   //this to be specific to pomodoro or chill, accordingly 
-   //span minutes must be shown again
-   var chillInput = $("h4.chill").siblings(".customize").val();
-   var pomodoroInput = $("h4.pomodoro").siblings(".customize").val() 
-   
-   if(chillInput){
-     $("span.chill-time").html(chillInput);
-   }
-    
-   if(pomodoroInput){
-      $("span.pomodoro-time").html(pomodoroInput);
-   }
-    
-    var pomodoro = eval($("span.pomodoro-time").html())*60+1;
-    //var chill = eval($("span.chill-time").html())*60;
-    
-    $(this).attr("value", "Pause");
-    $(this).removeClass("go");
-    $(this).addClass("playing");
-    $(".customize").hide();
-    Clock.start(Clock.totalSeconds = pomodoro, Clock.pomodoro = true);
-    $(".minutes").show().css("cursor", "default");
+  function pauseAndResume(check){
+    console.log(check);
+    if(check == "Pause"){
+      Clock.pause();   
+      $('.playing').attr("value", "Resume");
+    }else{ 
+      Clock.resume(); 
+      $(".playing").attr("value", "Pause");
+    }
+  }
+  
+  $('.go').on("click", function(){
+   var check = $(this).attr("value");
+   if(check == "Go"){
+       var chillInput = $("h4.chill").siblings(".customize").val();
+       var pomodoroInput = $("h4.pomodoro").siblings(".customize").val() 
+
+       if(chillInput){
+         $("span.chill-time").html(chillInput);
+       }
+
+       if(pomodoroInput){
+          $("span.pomodoro-time").html(pomodoroInput);
+       }
+
+        var pomodoro = eval($("span.pomodoro-time").html())*60+1;
+        //var chill = eval($("span.chill-time").html())*60;
+        
+        $(this).attr("value", "Pause");
+        $(this).removeClass("go");
+        $(this).addClass("playing");
+        $(".customize").hide();
+        Clock.start(Clock.totalSeconds = pomodoro, Clock.pomodoro = true);
+        $(".minutes").show().css("cursor", "default");
+      }else{
+        pauseAndResume(check);
+      }
   });
   
-  $('.playing').click(function(){
-    var check = $(this).attr("value");
-    if(check == "Pause"){
-       Clock.pause(); 
-       $(this).attr("value", "Resume");
-    }else{
-      Clock.resume();
-      $(this).attr("value", "Pause");
-    }
-  });
+  
 });
