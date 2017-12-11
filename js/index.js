@@ -25,12 +25,14 @@ $(document).ready(function(){
           Clock.pomodoro = false;  
           beep.play();
           $(".pomodoro").parent().removeClass("highlighted"); 
+          $(".pomodoro-time").text(Math.round(pomodoro/60));
           $(".chill").parent().addClass("highlighted");
         }else if(self.totalSeconds < 0 && self.pomodoro == false){
           Clock.totalSeconds = pomodoro-1;
           Clock.pomodoro = true;//needs to be pomodoro after chill
           beep.play();
           $(".pomodoro").parent().addClass("highlighted");
+          $(".chill-time").text(Math.round(chill/60));
           $(".chill").parent().removeClass("highlighted");
         }
 
